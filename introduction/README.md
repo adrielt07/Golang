@@ -11,3 +11,4 @@ go run <filename>
 5. dont_change_me.go - prints "Edit this file and uncomment the 'message' (remove //) inside main() or init()". Go ahead and edit the file as stated. It shows that 'const' variables are constant (can't be reassigned with a different value).
 6. slice.go - a simple example of slice
 7. switch_case.go - an example use of switch and case statement. Takes one argument: 1 or 2
+8. FizzBuzz.go - example usage of loop and if statements. Iterate up to 100. If num is a division of 3 print Fizz, if division of 5 print Buzz, lastly if it's a division of 15 print FizzBuzz.
