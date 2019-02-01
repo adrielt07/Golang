@@ -12,3 +12,4 @@ go run <filename>
 6. slice.go - a simple example of slice
 7. switch_case.go - an example use of switch and case statement. Takes one argument: 1 or 2
 8. FizzBuzz.go - example usage of loop and if statements. Iterate up to 100. If num is a division of 3 print Fizz, if division of 5 print Buzz, lastly if it's a division of 15 print FizzBuzz.
+9. basic_http_request - runs a simple http request in port 8000. Run it and open your browser. From your browser, enter 127.0.0.1:8000
