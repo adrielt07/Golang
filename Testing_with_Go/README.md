@@ -6,7 +6,24 @@ The purpose of this code is for me to explore how Unittesting and Code coverage 
 Go was written with the importance of testing in mind; therefore, testing tools are built-in when you first install Go.
 
 ### To Run Test
+
+To run basic tests and example test:
 ```GOPATH=<your directory>/Testing_with_Go/ go test pack```
+
+To show code coverage
+```go test pack -cover```
+
+For more details of Code coverage:
+
+```go test pack -coverprofile=cover.out #This creates a file 'cover.out'```
+
+```go tool cover -func=cover.out```
+
+```go tool cover -html=cover.out```
+
+To run Benchmark test:
+
+```go test pack -bench```
 
 ### Why Test???
 #### Stability
