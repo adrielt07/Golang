@@ -5,6 +5,9 @@ The purpose of this code is for me to explore how Unittesting and Code coverage 
 
 Go was written with the importance of testing in mind; therefore, testing tools are built-in when you first install Go.
 
+### To Run Test
+```GOPATH=<your directory>/Testing_with_Go/ go test pack```
+
 ### Why Test???
 #### Stability
 1. Well Structured tests will increase the stability of an application. If you have a well-structured test, you can be more aggressive to apply new feature to your application. The test will tell you if a regression was introduced.
