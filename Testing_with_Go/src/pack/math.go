@@ -24,3 +24,14 @@ func Add(nums ...int) (sum int) {
 	}
 	return
 }
+
+func Subtract(nums ...int) (difference int) {
+	for idx, i := range nums {
+		if idx == 0 {
+			difference = i
+		} else {
+			difference -= i
+		}
+	}
+	return
+}
