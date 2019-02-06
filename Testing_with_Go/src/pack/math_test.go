@@ -29,6 +29,19 @@ func TestCanAddNumbers(t *testing.T) {
 	}
 }
 
+// Test Subtract function
+func TestCanSubtractNumbers(t *testing.T) {
+	result := Subtract(10, 5)
+	if result != 5 {
+		t.Error("Failed to subtract two numbers")
+	}
+
+	result = Subtract(10, 5, 5)
+	if result != 0 {
+		t.Error("Failed to subtract more than 2 numbers")
+	}
+}
+
 // This is an example of how to skip a certain test that may not be ready yet
 func TestNumbersCanFly(t *testing.T) {
 	t.Skip("Example of how to skip in testing...")
