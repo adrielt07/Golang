@@ -2,15 +2,23 @@ package pack
 
 /*
  Tests package pack.math function
+
+ Parallel:
+ TestCanAddNumbers and TestCanSubtractNumbers run in parallel.
+ Both tests sleeps for 1 second. That means it will take 2 seconds for the test to finish. (comment out t.Parallel to see)
+ However, if ran in Parallel the test will finish in 1 sec
 */
 
 // Import testing
 import (
 	"testing"
+	"time"
 )
 
 func TestCanAddNumbers(t *testing.T) {
-	// This test will be skipped if -short flag is passed
+	t.Parallel()                // Run this test in Parallel with TestCanSubtractNumbers
+	time.Sleep(1 * time.Second) // Sleep for 1 second
+
 	if testing.Short() {
 		t.Skip("Skipping long test")
 	}
@@ -31,6 +39,8 @@ func TestCanAddNumbers(t *testing.T) {
 
 // Test Subtract function
 func TestCanSubtractNumbers(t *testing.T) {
+	t.Parallel()                // Run this test in Parrallel with TestCanAddNumbers
+	time.Sleep(1 * time.Second) // Sleep for 1 second
 	result := Subtract(10, 5)
 	if result != 5 {
 		t.Error("Failed to subtract two numbers")
