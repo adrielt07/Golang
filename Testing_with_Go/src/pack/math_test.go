@@ -19,16 +19,19 @@ import (
 
 /*
 Table driven test
-addTable - a slice that contains an anonymouse struct with two fields:
+tdt_table - a slice that contains an anonymouse struct with two fields:
 in - slice of integers used for calculation
 out - the expected output from in
 */
-var addTable = []struct {
-	in  []int
-	out int
+var tdt_table = []struct {
+	function string
+	in       []int
+	out      int
 }{
-	{[]int{1, 2}, 3},
-	{[]int{1, 2, 3, 4}, 10},
+	{"add", []int{1, 2}, 3},
+	{"add", []int{1, 2, 3, 4}, 10},
+	{"subtract", []int{1, 2, 3}, -4},
+	{"subtract", []int{5, 3}, 2},
 }
 
 var subtract_arr []int
@@ -61,10 +64,12 @@ func TestCanAddNumbers(t *testing.T) {
 	}
 
 	// Used Table Driven Test
-	for _, entry := range addTable {
-		result := Add(entry.in...)
-		if result != entry.out {
-			t.Error("Failed to add numbers")
+	for _, entry := range tdt_table {
+		if entry.function == "add" {
+			result := Add(entry.in...)
+			if result != entry.out {
+				t.Error("Failed to add numbers")
+			}
 		}
 	}
 }
@@ -74,8 +79,18 @@ func TestCanSubtractNumbers(t *testing.T) {
 	t.Parallel()                // Run this test in Parrallel with TestCanAddNumbers
 	time.Sleep(1 * time.Second) // Sleep for 1 second
 
+	// Use Table Driven Test
+	for _, entry := range tdt_table {
+		if entry.function == "subtract" {
+			result := Subtract(entry.in...)
+			if result != entry.out {
+				t.Error("Failed to add numbers")
+			}
+		}
+	}
+
+	// Shows the usage of TestMain - changed the value of subtract_arr
 	result := Subtract(subtract_arr...)
-	println("printing result", result)
 	if result != -4 {
 		t.Error("Failed to Subtract Numbers")
 	}
