@@ -1,5 +1,8 @@
 # Golang
 
+## Purpose
+This is just my personal notes. Trying to learn Go in 2 weeks :)
+
 What is Go?
 Go is a programming language created by Google engineers, Robert Griesemer, Rob Pike and Ken Thompson.
 
