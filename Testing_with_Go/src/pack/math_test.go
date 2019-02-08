@@ -9,11 +9,48 @@ package pack
  However, if ran in Parallel the test will finish in 1 sec
 */
 
-// Import testing
+// Imports
 import (
+	"fmt"
+	"os"
 	"testing"
 	"time"
 )
+
+/*
+Table driven test
+addTable - a slice that contains an anonymouse struct with two fields:
+in - slice of integers used for calculation
+out - the expected output from in
+*/
+var addTable = []struct {
+	in  []int
+	out int
+}{
+	{[]int{1, 2}, 3},
+	{[]int{1, 2, 3, 4}, 10},
+}
+
+var subtract_arr []int
+
+/*
+ TestMain - is similar to setup and teardown
+ When the test runner finds a function with the name 'TestMain'
+ it will give control of executing the test to this function
+
+ As a result: it will be similar to setup and teardown
+*/
+func TestMain(m *testing.M) {
+	// Run with -v flag to see the messages
+	println("Setting up variables for Subtract")
+	subtract_arr = []int{1, 2, 3}
+	fmt.Printf("subtract_arr = %v\n", subtract_arr)
+
+	result := m.Run()
+
+	println("Tests are done")
+	os.Exit(result)
+}
 
 func TestCanAddNumbers(t *testing.T) {
 	t.Parallel()                // Run this test in Parallel with TestCanSubtractNumbers
@@ -23,17 +60,12 @@ func TestCanAddNumbers(t *testing.T) {
 		t.Skip("Skipping long test")
 	}
 
-	result := Add(1, 2)
-	if result != 3 {
-		// Prints the failed test
-		t.Log("Failed to add one and two")
-		// Signals that test have failed
-		t.Fail()
-	}
-
-	result = Add(1, 2, 3, 4)
-	if result != 10 {
-		t.Error("Failed to add more than two numebrs")
+	// Used Table Driven Test
+	for _, entry := range addTable {
+		result := Add(entry.in...)
+		if result != entry.out {
+			t.Error("Failed to add numbers")
+		}
 	}
 }
 
@@ -41,14 +73,11 @@ func TestCanAddNumbers(t *testing.T) {
 func TestCanSubtractNumbers(t *testing.T) {
 	t.Parallel()                // Run this test in Parrallel with TestCanAddNumbers
 	time.Sleep(1 * time.Second) // Sleep for 1 second
-	result := Subtract(10, 5)
-	if result != 5 {
-		t.Error("Failed to subtract two numbers")
-	}
 
-	result = Subtract(10, 5, 5)
-	if result != 0 {
-		t.Error("Failed to subtract more than 2 numbers")
+	result := Subtract(subtract_arr...)
+	println("printing result", result)
+	if result != -4 {
+		t.Error("Failed to Subtract Numbers")
 	}
 }
 
